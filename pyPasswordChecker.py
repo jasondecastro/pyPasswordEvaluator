@@ -4,7 +4,7 @@
 # __license__ = GPL v2
 # This script evaluates passwords.
 
-import getpass
+import getpass, string
 
 def testPassword():
 	password_too_short, password_needs_uppercase, password_needs_lowercase, password_needs_number = True, True, True, True
@@ -17,17 +17,18 @@ def testPassword():
 		conditions_met += 1
 		password_too_short = False
 
-	if password.isupper():
-		conditions_met += 1
-		password_needs_uppercase = False
+	for char in password:
+		if char in string.ascii_uppercase:
+			conditions_met += 1
+			password_needs_uppercase = False
 
-	elif password.islower():
-		conditions_met += 1
-		password_needs_lowercase = False
+		if char in string.ascii_lowercase:
+			conditions_met += 1
+			password_needs_lowercase = False
 
-	elif password.isdigit():
-		conditions_met += 1
-		password_needs_number = False
+		if char in string.digits:
+			conditions_met += 1
+			password_needs_number = False
 
 	if conditions_met == 0: conditions_message = 'Your password is very weak.'
 	if conditions_met == 1: conditions_message = 'Your password is weak.'
