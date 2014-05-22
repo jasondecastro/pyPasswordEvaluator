@@ -45,8 +45,7 @@ def testPassword():
     print(conditions_message)
 
     if any((password_ts, password_nu, password_nl, password_nn)):
-        print('')
-        print('You can improve your password by...')
+        print('\nYou can improve your password by...')
         if password_nl: print('    -using lowercase letters.')
         if password_nu: print('    -using uppercase letters.')
         if password_ts: print('    -using more characters.')
